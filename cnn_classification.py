@@ -43,9 +43,10 @@ def main():
 
 
 def predict_class(image):
+    test_img = image.resize((150, 150))  # ensure the image is the size we want
 
     classifier_model = load_model(
-        'C:\\Users\\erona\\OneDrive\\Desktop\\fyp_GIT\\FYP\\sample_projects\\project_1-intel_image_classification\\model_checkpoint\\cnn_classification.hdf5'
+        r'/home/ubuntu/deployments/cnn_classification.hdf5'
     )
 
     model = Sequential([
@@ -53,7 +54,6 @@ def predict_class(image):
                        input_shape=(150, 150, 3))
     ])
 
-    test_img = image.resize((150, 150))  # ensure the image is the size we want
     test_img = preprocessing.image.img_to_array(test_img)
     test_img = np.expand_dims(test_img, axis=0)
 
